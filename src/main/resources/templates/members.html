@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>AEC Members</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/aec.css}">
+</head>
+<body>
+<div class="head" th:include="/header :: header">
+
+</div>
+<div class="operation">
+    <ul>
+        <li>
+            <input type="button" value="修改登陆密码">
+        </li>
+        <li>
+            <input type="button" value="添加会员">
+        </li>
+        <li>
+            <input type="button" value="查看所有会员积分记录">
+        </li>
+        <li>
+            <input type="button" value="退出登录">
+        </li>
+    </ul>
+</div>
+<div class="data">
+    <table>
+        <thead>
+        <tr>
+            <td>会员ID</td>
+            <td>中文名</td>
+            <td>英文名</td>
+            <td>微信名</td>
+            <td>微信ID</td>
+            <td>积分</td>
+            <td>修改积分</td>
+            <td>查看积分</td>
+            <td>删除会员</td>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="member, iterStat:${allmembers}">
+            <tr th:class="${iterStat.odd}?'odd':'even'">
+                <td th:text="${member.memberid}" class="mid"></td>
+                <td th:text="${member.cnname}"></td>
+                <td th:text="${member.egname}"></td>
+                <td th:text="${member.wechatname}"></td>
+                <td th:text="${member.wechatid}"></td>
+                <td th:text="${member.memberscore}" class="score"></td>
+                <td><a th:href="@{modify/${member.memberid}}">修改</a></td>
+                <td><a th:href="@{check/${member.memberid}}">查看</a></td>
+                <td><a th:href="@{delete/${member.memberid}}">删除</a></td>
+            </tr>
+        </tbody>
+        </th:block>
+    </table>
+</div>
+<div th:include="/footer :: footer"  class="rear"></div>
+<div class="top">
+    <a href="#">返回顶部</a>
+</div>
+</body>
+</html>

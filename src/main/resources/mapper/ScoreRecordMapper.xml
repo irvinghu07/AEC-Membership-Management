@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.irving.aecproject.dao.ScoreRecordMapper">
+  <resultMap id="BaseResultMap" type="com.irving.aecproject.entity.ScoreRecord">
+    <id column="recordID" jdbcType="INTEGER" property="recordid" />
+    <result column="memberID" jdbcType="VARCHAR" property="memberid" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="amount" jdbcType="INTEGER" property="amount" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="operateTime" jdbcType="TIMESTAMP" property="operatetime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from MemberScoreRecord
+    where recordID = #{recordid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.irving.aecproject.entity.ScoreRecord">
+    insert into MemberScoreRecord (recordID, memberID, operator, 
+      amount, content, operateTime
+      )
+    values (#{recordid,jdbcType=INTEGER}, #{memberid,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{operatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.irving.aecproject.entity.ScoreRecord">
+    update MemberScoreRecord
+    set memberID = #{memberid,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      operateTime = #{operatetime,jdbcType=TIMESTAMP}
+    where recordID = #{recordid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select recordID, memberID, operator, amount, content, operateTime
+    from MemberScoreRecord
+    where recordID = #{recordid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select recordID, memberID, operator, amount, content, operateTime
+    from MemberScoreRecord
+  </select>
+</mapper>
