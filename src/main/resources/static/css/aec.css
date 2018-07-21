@@ -71,6 +71,7 @@ a{
 }
 
 .head{
+    margin-top: 30px;
     width: 100%;
     background-color: #75BFDE;
     /*height: 170px;*/
@@ -159,45 +160,48 @@ table {
     width: 300px;
     height: 300px;
     margin: 20px auto;
-    background-color: #FED442;
+    margin-bottom: 50px;
+    /*background-color: #FED442;*/
+    background-color: #E5E6E8;
 }
 
 .word {
-    margin-left: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    color: dimgray;
+    margin: 20px 20px;
 }
 
 .textField {
-    width: 280px;
-    margin: 10px 10px;
+    width: 260px;
+    margin: 10px 20px;
 }
 
 .horizon{
     width: 100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 1px solid red;
+    magin: 10px 20px;
+    padding-left: 20px;
 }
 
 .forgot{
     float: left;
+    color: #1D89C0;
+    text-decoration: underline;
 }
 
 .empty{
-    /*float: left;*/
-    clear: both;
-    width: 200px;
+    float: left;
+    height: 20px;
+    width: 70px;
 }
 
 .remember{
     float: left;
+    color: dimgray;
 }
 
 .panel{
-    width: 60px;
+    width: 100px;
     height: 50px;
     color: #FFF;
     background-color: #1D89C0;
-    margin: 10px 10px;
+    margin: 10px 100px;
 }

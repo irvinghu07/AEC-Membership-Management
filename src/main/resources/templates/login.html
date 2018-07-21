@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/aec.css}">
+    <link rel="shortcut icon" href="/images/favicon.ico" th:href="@{/images/favicon.ico}">
 </head>
 <body>
     <div class="head" th:include="/header :: header"></div>
@@ -19,9 +20,10 @@
                     <input type="radio" value="" id="radio">
                     <label for="radio">记住我</label>
                 </div>
-                <p class="empty"></p>
-                <a href="" class="forgot">忘记登录密码？</a>
+                <div class="empty"></div>
+                <a href="" class="forgot">忘记登录密码?</a>
                 <div class="holder"></div>
+
             </div>
             <input type="submit" value="登录" class="panel">
         </form>
