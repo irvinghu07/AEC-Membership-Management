@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.irving.aecproject.dao.ScoreRecordMapper">
-  <resultMap id="BaseResultMap" type="com.irving.aecproject.entity.ScoreRecord">
+<mapper namespace="com.irving.aecproject.web.dao.ScoreRecordMapper">
+  <resultMap id="BaseResultMap" type="com.irving.aecproject.web.entity.ScoreRecord">
     <id column="recordID" jdbcType="INTEGER" property="recordid" />
     <result column="memberID" jdbcType="VARCHAR" property="memberid" />
     <result column="operator" jdbcType="VARCHAR" property="operator" />
@@ -13,7 +13,7 @@
     delete from MemberScoreRecord
     where recordID = #{recordid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.irving.aecproject.entity.ScoreRecord">
+  <insert id="insert" parameterType="com.irving.aecproject.web.entity.ScoreRecord">
     insert into MemberScoreRecord (recordID, memberID, operator, 
       amount, content, operateTime
       )
@@ -21,7 +21,7 @@
       #{amount,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{operatetime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.irving.aecproject.entity.ScoreRecord">
+  <update id="updateByPrimaryKey" parameterType="com.irving.aecproject.web.entity.ScoreRecord">
     update MemberScoreRecord
     set memberID = #{memberid,jdbcType=VARCHAR},
       operator = #{operator,jdbcType=VARCHAR},
