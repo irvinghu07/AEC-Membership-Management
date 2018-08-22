@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8077
   servlet:
     context-path: /aec
 spring:
@@ -46,7 +46,7 @@ com:
 #        width: 100
 #        urls: /hello, /user/*, /user
       browser:
-        loginPage: /login.html
+        loginPage: /member/toLogin
         loginType: REDIRECT
         rememberMeDuration: 1800
         signUpUrl: /demo-signup.html

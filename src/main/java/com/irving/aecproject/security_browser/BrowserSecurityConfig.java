@@ -1,7 +1,5 @@
 package com.irving.aecproject.security_browser;
 
-import com.irving.aecproject.security_browser.authentication.LoginAuthenticationFailureHandler;
-import com.irving.aecproject.security_browser.authentication.LoginAuthenticationSuccessHandler;
 import com.irving.aecproject.security_core.authentication.AbstractChannelSecurityConfig;
 import com.irving.aecproject.security_core.authentication.mobile.MessageCodeAuthenticationSecurityConfig;
 import com.irving.aecproject.security_core.properties.SecurityConstants;
@@ -25,12 +23,6 @@ import javax.sql.DataSource;
 public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
     @Autowired
     private SecurityProperties securityProperties;
-
-    @Autowired
-    private LoginAuthenticationSuccessHandler loginAuthenticationSuccessHandler;
-
-    @Autowired
-    private LoginAuthenticationFailureHandler loginAuthenticationFailureHandler;
 
     @Autowired
     private DataSource dataSource;
@@ -83,7 +75,7 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                         securityProperties.getBrowserProperties().getLoginPage(),
                         securityProperties.getBrowserProperties().getSignUpUrl(),
                         SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*",
-                        "/user/enroll")
+                        "/user/enroll", "/static/images/*","/static/css/*")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

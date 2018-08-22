@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/aec.css}">
-    <link rel="shortcut icon" href="/images/favicon.ico" th:href="@{/images/favicon.ico}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/aec.css}">
+    <link rel="shortcut icon" href="/images/favicon.ico" th:href="@{/static/images/favicon.ico}">
 </head>
 <body>
-    <div class="head" th:include="/header :: header"></div>
-    <div class="loginbox">
-        <form>
-            <p class="word">登录名：</p>
-            <input type="text" placeholder="会员ID" class="textField">
-            <p class="word">登录密码：</p>
-            <input type="password" placeholder="密码" class="textField">
-            </br>
-            <div class="horizon">
-                <div class="remember">
-                    <input type="radio" value="" id="radio">
-                    <label for="radio">记住我</label>
-                </div>
-                <div class="empty"></div>
-                <a href="" class="forgot">忘记登录密码?</a>
-                <div class="holder"></div>
-
+<div class="head" th:include="/header :: header"></div>
+<div class="loginbox">
+    <form action="/authentication/form" method="post">
+        <p class="word">登录名：</p>
+        <input type="text" placeholder="会员ID" class="textField">
+        <p class="word">登录密码：</p>
+        <input type="password" placeholder="密码" class="textField">
+        </br>
+        <div class="horizon">
+            <div class="remember">
+                <input type="radio" value="" id="radio">
+                <label for="radio">记住我</label>
             </div>
-            <input type="submit" value="登录" class="panel">
-        </form>
-    </div>
-    <div th:include="/footer :: footer"  class="rear"></div>
+            <div class="empty"></div>
+            <a href="" class="forgot">忘记登录密码?</a>
+            <div class="holder"></div>
+
+        </div>
+        <input type="submit" value="登录" class="panel">
+    </form>
+</div>
+<div th:include="/footer :: footer" class="rear"></div>
 </body>
 </html>
