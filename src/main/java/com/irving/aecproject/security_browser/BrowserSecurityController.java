@@ -4,6 +4,7 @@ import com.irving.aecproject.security_browser.support.SimpleResponse;
 import com.irving.aecproject.security_browser.support.SocialUserInfo;
 import com.irving.aecproject.security_core.properties.SecurityConstants;
 import com.irving.aecproject.security_core.properties.SecurityProperties;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,12 +49,12 @@ public class BrowserSecurityController {
         if (savedRequest != null) {
             String target = savedRequest.getRedirectUrl();
             logger.info("引发跳转的请求是：{}", target);
-//            if (StringUtils.endsWithIgnoreCase(target, ".html")) {
-//                logger.info("redirecting to login page:{}", securityProperties.getBrowserProperties().getLoginPage());
-//                redirectStrategy.sendRedirect(request, response, securityProperties.getBrowserProperties().getLoginPage());
-//            }
-            logger.info("redirecting to login page:{}", securityProperties.getBrowserProperties().getLoginPage());
-            redirectStrategy.sendRedirect(request, response, securityProperties.getBrowserProperties().getLoginPage());
+            if (StringUtils.endsWithIgnoreCase(target, ".html")) {
+                logger.info("redirecting to login page:{}", securityProperties.getBrowserProperties().getLoginPage());
+                redirectStrategy.sendRedirect(request, response, securityProperties.getBrowserProperties().getLoginPage());
+            }
+//            logger.info("redirecting to login page:{}", securityProperties.getBrowserProperties().getLoginPage());
+//            redirectStrategy.sendRedirect(request, response, securityProperties.getBrowserProperties().getLoginPage());
         }
         return new SimpleResponse("访问的服务需要身份验证，请引导用户到登录页面");
     }

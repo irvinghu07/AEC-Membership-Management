@@ -1,4 +1,4 @@
-package com.irving.aecproject.security_browser;
+package com.irving.aecproject.security_browser.config;
 
 import com.irving.aecproject.security_core.authentication.AbstractChannelSecurityConfig;
 import com.irving.aecproject.security_core.authentication.mobile.MessageCodeAuthenticationSecurityConfig;
@@ -75,7 +75,8 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                         securityProperties.getBrowserProperties().getLoginPage(),
                         securityProperties.getBrowserProperties().getSignUpUrl(),
                         SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*",
-                        "/user/enroll", "/static/images/*","/static/css/*")
+                        "/user/enroll", "/static/images/**",
+                        "/static/css/**", "/member/showMembers")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
