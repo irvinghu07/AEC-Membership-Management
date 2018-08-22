@@ -1,6 +1,6 @@
 package com.irving.aecproject.security_core.validationCode;
 
-import com.irving.security.springbootsecurity.security_core.properties.SecurityConstants;
+import com.irving.aecproject.security_core.properties.SecurityConstants;
 
 public enum ValidateCodeType {
 

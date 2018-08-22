@@ -1,6 +1,6 @@
 package com.irving.aecproject.security_core.authentication;
 
-import com.irving.security.springbootsecurity.security_core.properties.SecurityConstants;
+import com.irving.aecproject.security_core.properties.SecurityConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;

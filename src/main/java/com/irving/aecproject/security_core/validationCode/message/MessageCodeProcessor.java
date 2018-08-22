@@ -1,7 +1,7 @@
 package com.irving.aecproject.security_core.validationCode.message;
 
-import com.irving.security.springbootsecurity.security_core.validationCode.ValidateCode;
-import com.irving.security.springbootsecurity.security_core.validationCode.impl.AbstractValidateCodeProcessor;
+import com.irving.aecproject.security_core.validationCode.ValidateCode;
+import com.irving.aecproject.security_core.validationCode.impl.AbstractValidateCodeProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.ServletRequestUtils;

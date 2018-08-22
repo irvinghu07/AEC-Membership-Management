@@ -1,7 +1,7 @@
 package com.irving.aecproject.security_core.social.weixin.connect;
 
-import com.irving.security.springbootsecurity.security_core.social.weixin.api.Weixin;
-import com.irving.security.springbootsecurity.security_core.social.weixin.api.WeixinImpl;
+import com.irving.aecproject.security_core.social.weixin.api.Weixin;
+import com.irving.aecproject.security_core.social.weixin.api.WeixinImpl;
 import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
 
 /**

@@ -1,6 +1,6 @@
 package com.irving.aecproject.security_core.validationCode.image;
 
-import com.irving.security.springbootsecurity.security_core.validationCode.ValidateCode;
+import com.irving.aecproject.security_core.validationCode.ValidateCode;
 
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;

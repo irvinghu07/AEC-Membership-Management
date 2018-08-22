@@ -1,8 +1,8 @@
 package com.irving.aecproject.security_browser.authentication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.irving.security.springbootsecurity.security_core.properties.LoginType;
-import com.irving.security.springbootsecurity.security_core.properties.SecurityProperties;
+import com.irving.aecproject.security_core.properties.LoginType;
+import com.irving.aecproject.security_core.properties.SecurityProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

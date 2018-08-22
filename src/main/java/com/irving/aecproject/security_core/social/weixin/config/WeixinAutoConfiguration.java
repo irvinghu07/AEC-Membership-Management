@@ -1,8 +1,8 @@
 package com.irving.aecproject.security_core.social.weixin.config;
 
-import com.irving.security.springbootsecurity.security_core.properties.SecurityProperties;
-import com.irving.security.springbootsecurity.security_core.properties.WeixinProperties;
-import com.irving.security.springbootsecurity.security_core.social.weixin.connect.WeixinConnectionFactory;
+import com.irving.aecproject.security_core.properties.SecurityProperties;
+import com.irving.aecproject.security_core.properties.WeixinProperties;
+import com.irving.aecproject.security_core.social.weixin.connect.WeixinConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;

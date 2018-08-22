@@ -1,7 +1,7 @@
 package com.irving.aecproject.security_core.social.qq.connect;
 
-import com.irving.security.springbootsecurity.security_core.social.qq.api.QQ;
-import com.irving.security.springbootsecurity.security_core.social.qq.api.QQImpl;
+import com.irving.aecproject.security_core.social.qq.api.QQ;
+import com.irving.aecproject.security_core.social.qq.api.QQImpl;
 import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
 
 public class QQServiceProvider extends AbstractOAuth2ServiceProvider<QQ> {

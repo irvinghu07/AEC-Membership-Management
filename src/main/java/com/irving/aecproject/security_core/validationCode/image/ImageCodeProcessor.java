@@ -1,6 +1,6 @@
 package com.irving.aecproject.security_core.validationCode.image;
 
-import com.irving.security.springbootsecurity.security_core.validationCode.impl.AbstractValidateCodeProcessor;
+import com.irving.aecproject.security_core.validationCode.impl.AbstractValidateCodeProcessor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.ServletWebRequest;
 

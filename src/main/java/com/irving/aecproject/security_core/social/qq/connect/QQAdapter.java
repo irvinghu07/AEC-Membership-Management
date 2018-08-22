@@ -1,7 +1,7 @@
 package com.irving.aecproject.security_core.social.qq.connect;
 
-import com.irving.security.springbootsecurity.security_core.social.qq.api.QQ;
-import com.irving.security.springbootsecurity.security_core.social.qq.api.QQUserInfo;
+import com.irving.aecproject.security_core.social.qq.api.QQ;
+import com.irving.aecproject.security_core.social.qq.api.QQUserInfo;
 import org.springframework.social.connect.ApiAdapter;
 import org.springframework.social.connect.ConnectionValues;
 import org.springframework.social.connect.UserProfile;

@@ -1,6 +1,6 @@
 package com.irving.aecproject.security_core.social;
 
-import com.irving.security.springbootsecurity.security_core.properties.SecurityProperties;
+import com.irving.aecproject.security_core.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

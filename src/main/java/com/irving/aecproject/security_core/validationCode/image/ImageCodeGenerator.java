@@ -1,7 +1,7 @@
 package com.irving.aecproject.security_core.validationCode.image;
 
-import com.irving.security.springbootsecurity.security_core.properties.SecurityProperties;
-import com.irving.security.springbootsecurity.security_core.validationCode.ValidateCodeGenerator;
+import com.irving.aecproject.security_core.properties.SecurityProperties;
+import com.irving.aecproject.security_core.validationCode.ValidateCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;

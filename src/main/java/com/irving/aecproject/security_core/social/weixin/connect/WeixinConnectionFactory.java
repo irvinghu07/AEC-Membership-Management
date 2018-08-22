@@ -1,6 +1,6 @@
 package com.irving.aecproject.security_core.social.weixin.connect;
 
-import com.irving.security.springbootsecurity.security_core.social.weixin.api.Weixin;
+import com.irving.aecproject.security_core.social.weixin.api.Weixin;
 import org.springframework.social.connect.ApiAdapter;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionData;

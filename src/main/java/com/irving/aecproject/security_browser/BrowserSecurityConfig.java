@@ -1,12 +1,12 @@
 package com.irving.aecproject.security_browser;
 
-import com.irving.security.springbootsecurity.security_browser.authentication.LoginAuthenticationFailureHandler;
-import com.irving.security.springbootsecurity.security_browser.authentication.LoginAuthenticationSuccessHandler;
-import com.irving.security.springbootsecurity.security_core.authentication.AbstractChannelSecurityConfig;
-import com.irving.security.springbootsecurity.security_core.authentication.mobile.MessageCodeAuthenticationSecurityConfig;
-import com.irving.security.springbootsecurity.security_core.properties.SecurityConstants;
-import com.irving.security.springbootsecurity.security_core.properties.SecurityProperties;
-import com.irving.security.springbootsecurity.security_core.validationCode.ValidateCodeSecurityConfig;
+import com.irving.aecproject.security_browser.authentication.LoginAuthenticationFailureHandler;
+import com.irving.aecproject.security_browser.authentication.LoginAuthenticationSuccessHandler;
+import com.irving.aecproject.security_core.authentication.AbstractChannelSecurityConfig;
+import com.irving.aecproject.security_core.authentication.mobile.MessageCodeAuthenticationSecurityConfig;
+import com.irving.aecproject.security_core.properties.SecurityConstants;
+import com.irving.aecproject.security_core.properties.SecurityProperties;
+import com.irving.aecproject.security_core.validationCode.ValidateCodeSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
