@@ -8,4 +8,8 @@ public interface MemberInfoService {
     List<MemberInfo> queryAllMembers();
 
     List<MemberInfo> queryMembersByPage(int currentPage, int pageSize);
+
+    MemberInfo queryMemberByUsername(String username);
+
+    int updateMemberInfo(MemberInfo memberInfo);
 }

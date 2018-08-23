@@ -13,6 +13,7 @@ import java.util.List;
 public class MemberInfoServiceImpl implements MemberInfoService {
     @Autowired
     private MemberInfoMapper memberInfoMapper;
+
     @Override
     public List<MemberInfo> queryAllMembers() {
         return memberInfoMapper.selectAll();
@@ -22,5 +23,15 @@ public class MemberInfoServiceImpl implements MemberInfoService {
     public List<MemberInfo> queryMembersByPage(int currentPage, int pageSize) {
         PageHelper.startPage(currentPage, pageSize);
         return memberInfoMapper.selectAll();
+    }
+
+    @Override
+    public MemberInfo queryMemberByUsername(String username) {
+        return memberInfoMapper.selectByPrimaryKey(username);
+    }
+
+    @Override
+    public int updateMemberInfo(MemberInfo memberInfo) {
+        return memberInfoMapper.updateByPrimaryKey(memberInfo);
     }
 }

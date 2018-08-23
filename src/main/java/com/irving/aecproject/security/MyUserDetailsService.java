@@ -1,5 +1,7 @@
 package com.irving.aecproject.security;
 
+import com.irving.aecproject.web.entity.MemberInfo;
+import com.irving.aecproject.web.service.MemberInfoService;
 import org.apache.commons.codec.binary.Hex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +25,9 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
     private static final Logger logger = LoggerFactory.getLogger(MyUserDetailsService.class);
 
     @Autowired
+    private MemberInfoService memberInfoService;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     /**
@@ -40,6 +45,7 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //        根据用户名使用数据持久层查找用户信息
+        MemberInfo queriesMemberInfo = memberInfoService.queryMemberByUsername(username);
         logger.info("表单登录用户名: {}", username);
         return buildUser(username);
     }
@@ -86,6 +92,8 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+
+
         return encodeStr;
     }
 }
