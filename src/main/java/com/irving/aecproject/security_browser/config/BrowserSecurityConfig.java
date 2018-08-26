@@ -57,7 +57,8 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
     protected void configure(HttpSecurity http) throws Exception {
         applyPasswordAuthenticationConfig(http);
 
-        http.apply(validateCodeSecurityConfig)
+        http
+                .apply(validateCodeSecurityConfig)
                 .and()
                 .apply(messageCodeAuthenticationSecurityConfig)
                 .and()
@@ -76,8 +77,15 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                         securityProperties.getBrowserProperties().getSignUpUrl(),
                         SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*",
                         "/user/enroll", "/static/images/**",
-                        "/static/css/**", "/member/showMembers")
+                        "/static/css/**")
                 .permitAll()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/member/showMembers")
+                .hasRole("ADMIN")
+//                .antMatchers("/member/showMembers")
+//                .hasRole("ADMIN")
+//                .access("hasRole('ADMIN')")
                 .anyRequest()
                 .authenticated()
                 .and()

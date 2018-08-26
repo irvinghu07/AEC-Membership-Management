@@ -1,7 +1,7 @@
 server:
   port: 8077
-  servlet:
-    context-path: /aec
+#  servlet:
+#    context-path: /aec
 spring:
   thymeleaf:
     encoding: UTF-8

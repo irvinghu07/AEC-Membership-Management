@@ -2,7 +2,6 @@ package com.irving.aecproject.security;
 
 import com.irving.aecproject.web.entity.MemberInfo;
 import com.irving.aecproject.web.service.MemberInfoService;
-import org.apache.commons.codec.binary.Hex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +9,10 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.security.SocialUser;
 import org.springframework.social.security.SocialUserDetails;
 import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.stereotype.Service;
-
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 @Service("userDetailsService")
 public class MyUserDetailsService implements UserDetailsService, SocialUserDetailsService {
@@ -26,9 +20,6 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
 
     @Autowired
     private MemberInfoService memberInfoService;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     /**
      * Locates the user based on the username. In the actual implementation, the search
@@ -47,7 +38,9 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
 //        根据用户名使用数据持久层查找用户信息
         MemberInfo queriesMemberInfo = memberInfoService.queryMemberByUsername(username);
         logger.info("表单登录用户名: {}", username);
-        return buildUser(username);
+//        MemberInfo memberInfo = new MemberInfo();
+//        return buildUser(username);
+        return memberInfoService.queryMemberByUsername(username);
     }
 
     /**
@@ -63,37 +56,9 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
     }
 
     private SocialUserDetails buildUser(String userId) {
-        //        !!!!!
-//        "{noop}123456"
-//        方法一：在实体类中实现UserDetails接口并重写四个布尔类型的方法确认是否valid
-//        方法二：返回新的org.springframework.security.core.userdetails.User对象时使用七个参数的方法来判断是否valid
-
-
-//        String encoding = "SHA-256";
-//        String finalPwd = "{" + encoding + "}" + processedPass;
-        String rowPass = "123456";
-        String finalPwd = passwordEncoder.encode(rowPass);
-
-        logger.info("数据库密码是:{}", finalPwd);
-        return new SocialUser(userId, finalPwd, true, true, true, true, AuthorityUtils
+        String pwd = memberInfoService.queryMemberByUsername(userId).getMemberpwd();
+        logger.info("数据库密码是:{}", pwd);
+        return new SocialUser(userId, pwd, true, true, true, true, AuthorityUtils
                 .commaSeparatedStringToAuthorityList("admin"));
-    }
-
-
-    public static String getSHA256Str(String str) {
-        MessageDigest messageDigest;
-        String encodeStr = "";
-        try {
-            messageDigest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = messageDigest.digest(str.getBytes("UTF-8"));
-            encodeStr = Hex.encodeHexString(hash);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-
-        return encodeStr;
     }
 }
