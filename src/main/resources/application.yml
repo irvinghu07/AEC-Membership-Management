@@ -16,13 +16,10 @@ spring:
       test-on-borrow: false
       initial-size: 1
       min-idle: 1
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.irving.aecproject.web.dao
-  configuration:
-    map-underscore-to-camel-case: true
-    use-column-label: true
-    use-generated-keys: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
 pagehelper:
   helper-dialect: mysql
   reasonable: true

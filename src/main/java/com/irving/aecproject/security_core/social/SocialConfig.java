@@ -41,7 +41,7 @@ public class SocialConfig extends SocialConfigurerAdapter {
     public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
         JdbcUsersConnectionRepository jdbcUsersConnectionRepository = new
                 JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator, Encryptors.noOpText());
-        jdbcUsersConnectionRepository.setTablePrefix("Imooc_");
+        jdbcUsersConnectionRepository.setTablePrefix("Aec_");
         if (connectionSignUp != null) {
             jdbcUsersConnectionRepository.setConnectionSignUp(connectionSignUp);
         }

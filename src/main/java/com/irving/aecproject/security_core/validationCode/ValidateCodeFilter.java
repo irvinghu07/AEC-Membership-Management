@@ -21,11 +21,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Set;
 
 @Component("validateCodeFilter")
 public class ValidateCodeFilter extends OncePerRequestFilter implements InitializingBean {
-
-//    private static final String SESSION_KEY = ValidateCodeProcessor.SESSION_KEY_PREFIX + "IMAGE";
 
     @Autowired
     private SecurityProperties securityProperties;
@@ -66,6 +65,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
         urlMap.put(SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE, ValidateCodeType.MESSAGE);
         addUrlToMap(securityProperties.getValidateCodeProperties()
                 .getMessageCodeProperties().getUrls(), ValidateCodeType.MESSAGE);
+        urlMap.forEach((key, value) -> logger.info(String.format("{%s-%s}", key, value)));
     }
 
     private void addUrlToMap(String urlString, ValidateCodeType type) {
@@ -106,10 +106,15 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
     }
 
     private ValidateCodeType getValidateCodeType(HttpServletRequest request) {
+        logger.info(String.format("request:%s", request.getRequestURI().toString()));
         ValidateCodeType result = null;
         if (!StringUtils.equalsIgnoreCase(request.getMethod(), "get")) {
-            urlMap.get(urlMap.keySet().stream().filter(url -> pathMatcher.match(url, request
-                    .getRequestURI())).findFirst().orElse(null));
+            Set<String> urls = urlMap.keySet();
+            for (String url : urls) {
+                if (pathMatcher.match(url, request.getRequestURI())) {
+                    result = urlMap.get(url);
+                }
+            }
         }
         return result;
     }

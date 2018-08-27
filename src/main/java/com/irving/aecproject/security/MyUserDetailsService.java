@@ -1,15 +1,12 @@
 package com.irving.aecproject.security;
 
-import com.irving.aecproject.web.entity.MemberInfo;
 import com.irving.aecproject.web.service.MemberInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.social.security.SocialUser;
 import org.springframework.social.security.SocialUserDetails;
 import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.stereotype.Service;
@@ -36,11 +33,12 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //        根据用户名使用数据持久层查找用户信息
-        MemberInfo queriesMemberInfo = memberInfoService.queryMemberByUsername(username);
-        logger.info("表单登录用户名: {}", username);
+//        MemberInfo queriesMemberInfo = memberInfoService.queryMemberByUsername(username);
+//        logger.info("表单登录用户名: {}", username);
 //        MemberInfo memberInfo = new MemberInfo();
 //        return buildUser(username);
-        return memberInfoService.queryMemberByUsername(username);
+//        return memberInfoService.queryMemberByUsername(username);
+        return null;
     }
 
     /**
@@ -56,9 +54,10 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
     }
 
     private SocialUserDetails buildUser(String userId) {
-        String pwd = memberInfoService.queryMemberByUsername(userId).getMemberpwd();
-        logger.info("数据库密码是:{}", pwd);
-        return new SocialUser(userId, pwd, true, true, true, true, AuthorityUtils
-                .commaSeparatedStringToAuthorityList("admin"));
+//        String pwd = memberInfoService.queryMemberByUsername(userId).getMemberpwd();
+//        logger.info("数据库密码是:{}", pwd);
+//        return new SocialUser(userId, pwd, true, true, true, true, AuthorityUtils
+//                .commaSeparatedStringToAuthorityList("admin"));
+        return null;
     }
 }

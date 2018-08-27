@@ -3,27 +3,28 @@ body {
     background-color: #75BFDE;
 }
 
-.operation{
+.operation {
     /*#47729F*/
     background-color: #75BFDE;
     list-style-type: none;
     width: 100%;
     height: 25px;
 }
-.operation ul{
+
+.operation ul {
     padding: 0px;
     margin: 0px;
     list-style-type: none;
 }
 
-.operation input{
+.operation input {
     font-size: 30px;
     margin: 0px auto;
     padding: 10px;
     display: inline-block;
 }
 
-.operation li{
+.operation li {
     /*border: 1px solid red;*/
     /*margin: 5px 20px 5px 20px;*/
     text-align: center;
@@ -32,51 +33,54 @@ body {
     float: left;
 }
 
-.holder{
+.holder {
     clear: both;
 }
 
-a{
+a {
     text-decoration: none;
     color: orangered;
     /*#819D54*/
 }
 
-.intro{
+.intro {
     margin: 5px 100px 5px 150px;
     float: left;
     /*border: 1px solid red;*/
 }
 
-.intro p{
-    color: #ECECEC;
-    font-size: 20px;
-}
-.intro p span{
+.intro p {
     color: #ECECEC;
     font-size: 20px;
 }
 
-.welcome{
+.intro p span {
+    color: #ECECEC;
+    font-size: 20px;
+}
+
+.welcome {
     font-size: 34px;
     text-align: center;
     color: #ECECEC;
     /*margin: 50px auto;*/
 }
+
 /*.score{*/
-    /*color: #FECD51;*/
+/*color: #FECD51;*/
 /*}*/
-.mid{
+.mid {
     color: #1D89C0;
 }
 
-.head{
+.head {
     margin-top: 30px;
     width: 100%;
     background-color: #75BFDE;
     /*height: 170px;*/
 }
-.head img{
+
+.head img {
     float: left;
     margin-left: 20px;
     margin-top: 5px;
@@ -84,22 +88,24 @@ a{
     width: 160px;
     height: 160px;
 }
+
 table, tr, td {
     margin: 10px auto;
     border-collapse: collapse;
     border: 1px solid #CCC;
 }
 
-table thead{
+table thead {
     background-color: #D8E7F1;
     color: #47729F;
 }
-.even{
+
+.even {
     background-color: #FFF;
     /*#228DA6*/
 }
 
-.odd{
+.odd {
     background-color: #ECECEC;
     /*#2FB2D2*/
 }
@@ -117,7 +123,7 @@ table {
     margin-bottom: 0px;
 }
 
-.top{
+.top {
     position: fixed;
     bottom: 100px;
     right: 0px;
@@ -128,11 +134,11 @@ table {
     border: 1px solid #0a598b;
 }
 
-.top a{
+.top a {
     color: #FFF;
 }
 
-.rear{
+.rear {
     font-size: 15px;
     height: 50px;
     line-height: 50px;
@@ -144,64 +150,93 @@ table {
     background-color: #75BFDE;
 }
 
-.rear p{
+.rear p {
     margin: 0px;
     padding: 0px;
     color: #FFF;
 }
 
-.rear a{
+.rear a {
     color: rebeccapurple;
     text-decoration: underline;
 }
 
-.loginbox{
+.loginbox {
     border: 1px solid #CFCFCF;
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     margin: 20px auto;
-    margin-bottom: 50px;
+    /*margin-bottom: 50px;*/
     /*background-color: #FED442;*/
     background-color: #E5E6E8;
 }
 
 .word {
     color: dimgray;
-    margin: 20px 20px;
+    /*working */
+    margin: 10px 10px;
+}
+
+.CAPTCHA {
+    width: 400px;
+}
+
+.CAPTCHA p {
+    float: left;
+}
+
+.image {
+    float: left;
 }
 
 .textField {
-    width: 260px;
+    background-color: #FAFEC0;
+    width: 360px;
     margin: 10px 20px;
 }
 
-.horizon{
+.horizon {
     width: 100%;
     magin: 10px 20px;
     padding-left: 20px;
 }
 
-.forgot{
+.forgot {
     float: left;
     color: #1D89C0;
     text-decoration: underline;
 }
 
-.empty{
-    float: left;
-    height: 20px;
-    width: 70px;
+.socialLogin {
+    width: 320px;
 }
 
-.remember{
+.socialLogin li{
+    float: left;
+    width: 160px;
+    text-align: center;
+    list-style-type: none;
+}
+.socialLogin img {
+    width: 30px;
+    height: 30px;
+}
+
+.empty {
+    float: left;
+    height: 20px;
+    width: 170px;
+}
+
+.remember {
     float: left;
     color: dimgray;
 }
 
-.panel{
+.panel {
     width: 100px;
-    height: 50px;
+    height: 30px;
     color: #FFF;
     background-color: #1D89C0;
-    margin: 10px 100px;
+    margin: 10px 150px;
 }

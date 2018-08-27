@@ -1,25 +1,36 @@
 package com.irving.aecproject.web.entity;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.social.security.SocialUserDetails;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
-public class MemberInfo implements UserDetails {
+@Entity
+@Table(name = "SicMemberInfo")
+public class MemberInfo implements UserDetails, Serializable, SocialUserDetails {
+
+    private static final long serialVersionUID = 1L;
+
     private static final String ADMIN_STR = "admin";
 
-    private String memberid;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long mid;
+
+    private String username;
 
     private String memberpwd;
 
-    private String cnname;
+    private String connactName;
 
-    private String egname;
+    private String major;
 
-    private String wechatname;
+    private String estimateGraduateTime;
 
     private String wechatid;
 
@@ -27,12 +38,23 @@ public class MemberInfo implements UserDetails {
 
     private Integer active;
 
-    public String getMemberid() {
-        return memberid;
+    @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    private List<MemberRole> role;
+
+    public static String getAdminStr() {
+        return ADMIN_STR;
     }
 
-    public void setMemberid(String memberid) {
-        this.memberid = memberid == null ? null : memberid.trim();
+    public long getMid() {
+        return mid;
+    }
+
+    public void setMid(long mid) {
+        this.mid = mid;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getMemberpwd() {
@@ -40,31 +62,31 @@ public class MemberInfo implements UserDetails {
     }
 
     public void setMemberpwd(String memberpwd) {
-        this.memberpwd = memberpwd == null ? null : memberpwd.trim();
+        this.memberpwd = memberpwd;
     }
 
-    public String getCnname() {
-        return cnname;
+    public String getConnactName() {
+        return connactName;
     }
 
-    public void setCnname(String cnname) {
-        this.cnname = cnname == null ? null : cnname.trim();
+    public void setConnactName(String connactName) {
+        this.connactName = connactName;
     }
 
-    public String getEgname() {
-        return egname;
+    public String getMajor() {
+        return major;
     }
 
-    public void setEgname(String egname) {
-        this.egname = egname == null ? null : egname.trim();
+    public void setMajor(String major) {
+        this.major = major;
     }
 
-    public String getWechatname() {
-        return wechatname;
+    public String getEstimateGraduateTime() {
+        return estimateGraduateTime;
     }
 
-    public void setWechatname(String wechatname) {
-        this.wechatname = wechatname == null ? null : wechatname.trim();
+    public void setEstimateGraduateTime(String estimateGraduateTime) {
+        this.estimateGraduateTime = estimateGraduateTime;
     }
 
     public String getWechatid() {
@@ -72,7 +94,7 @@ public class MemberInfo implements UserDetails {
     }
 
     public void setWechatid(String wechatid) {
-        this.wechatid = wechatid == null ? null : wechatid.trim();
+        this.wechatid = wechatid;
     }
 
     public Integer getMemberscore() {
@@ -91,21 +113,13 @@ public class MemberInfo implements UserDetails {
         this.active = active;
     }
 
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("MemberInfo{");
-        sb.append("memberid='").append(memberid).append('\'');
-        sb.append(", memberpwd='").append(memberpwd).append('\'');
-        sb.append(", cnname='").append(cnname).append('\'');
-        sb.append(", egname='").append(egname).append('\'');
-        sb.append(", wechatname='").append(wechatname).append('\'');
-        sb.append(", wechatid='").append(wechatid).append('\'');
-        sb.append(", memberscore=").append(memberscore);
-        sb.append(", active=").append(active);
-        sb.append('}');
-        return sb.toString();
+    public List<MemberRole> getRole() {
+        return role;
     }
 
+    public void setRole(List<MemberRole> role) {
+        this.role = role;
+    }
 
     /**
      * Returns the authorities granted to the user. Cannot return <code>null</code>.
@@ -115,11 +129,11 @@ public class MemberInfo implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         ArrayList<GrantedAuthority> auths = new ArrayList<>();
-        if (StringUtils.startsWith(this.getMemberid(), ADMIN_STR)) {
-            auths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        } else {
-            auths.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
-        }
+//        if (StringUtils.startsWith(this.getMid(), ADMIN_STR)) {
+//            auths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+//        } else {
+//            auths.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
+//        }
         return auths;
     }
 
@@ -140,7 +154,7 @@ public class MemberInfo implements UserDetails {
      */
     @Override
     public String getUsername() {
-        return this.getMemberid();
+        return this.getUsername();
     }
 
     /**
@@ -187,5 +201,16 @@ public class MemberInfo implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    /**
+     * The user's identity at the provider.
+     * Might be same as {@link #getUsername()} if users are identified by username
+     *
+     * @return user's id used to assign connections
+     */
+    @Override
+    public String getUserId() {
+        return this.getUsername();
     }
 }

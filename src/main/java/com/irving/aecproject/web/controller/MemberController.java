@@ -1,19 +1,15 @@
 package com.irving.aecproject.web.controller;
 
-import com.irving.aecproject.web.entity.MemberInfo;
 import com.irving.aecproject.web.entity.ScoreRecord;
 import com.irving.aecproject.web.service.MemberInfoService;
 import com.irving.aecproject.web.service.ScoreRecordService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/member")
@@ -24,13 +20,13 @@ public class MemberController {
     @Resource(name = "scoreRecordService")
     private ScoreRecordService scoreRecordService;
 
-    @ResponseBody
-    @RequestMapping("/members")
-    Map<String, Object> queryAllMembers() {
-        Map<String, Object> result = new HashMap<>();
-        result.put("members", memberInfoService.queryAllMembers());
-        return result;
-    }
+//    @ResponseBody
+//    @RequestMapping("/members")
+//    Map<String, Object> queryAllMembers() {
+//        Map<String, Object> result = new HashMap<>();
+//        result.put("members", memberInfoService.queryAllMembers());
+//        return result;
+//    }
 
     @RequestMapping("/showMembers")
     String showAllMembers(ModelMap map){
@@ -44,11 +40,11 @@ public class MemberController {
         return "login";
     }
 
-    @RequestMapping("/page")
-    @ResponseBody
-    List<MemberInfo> queryMembersByPages(@RequestParam("currentpage") Integer currentPage, @RequestParam("pagesize") Integer pageSize){
-        return memberInfoService.queryMembersByPage(currentPage, pageSize);
-    }
+//    @RequestMapping("/page")
+//    @ResponseBody
+//    List<MemberInfo> queryMembersByPages(@RequestParam("currentpage") Integer currentPage, @RequestParam("pagesize") Integer pageSize){
+//        return memberInfoService.queryMembersByPage(currentPage, pageSize);
+//    }
 
     @RequestMapping("/records")
     @ResponseBody

@@ -12,18 +12,34 @@
     <form action="/authentication/form" method="post">
         <p class="word">登录名：</p>
         <input type="text" placeholder="会员ID" class="textField" name="username">
+        <div class="CAPTCHA">
+            <p class="word">
+                图形验证码：
+            </p>
+            <img class="image" src="/code/image?width=60">
+        </div>
+        <input type="text" name="imageCode" placeholder="如加载失败，请刷新页面" class="textField">
         <p class="word">登录密码：</p>
         <input type="password" placeholder="密码" class="textField" name="password">
         </br>
         <div class="horizon">
             <div class="remember">
-                <input type="radio" value="" id="radio">
-                <label for="radio">记住我</label>
+                <input type="checkbox" name="remember-me" value="true"/> 记住我
             </div>
             <div class="empty"></div>
             <a href="" class="forgot">忘记登录密码?</a>
             <div class="holder"></div>
-
+            <p class="word">社交登录</p>
+            <ul class="socialLogin">
+                <li>
+                    <img th:src="@{/static/images/qq.png}" href="/images/qq.pgn"
+                        onclick="location.href='/qqLogin/callback.do'">
+                </li>
+                <li>
+                    <img th:src="@{/static/images/wechat.jpg}" href="/images/wechat.jpg"
+                        onclick="location.href='/qqLogin/weixin'">
+                </li>
+            </ul>
         </div>
         <input type="submit" value="登录" class="panel">
     </form>

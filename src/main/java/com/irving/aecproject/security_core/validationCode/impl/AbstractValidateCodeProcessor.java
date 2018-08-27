@@ -2,6 +2,8 @@ package com.irving.aecproject.security_core.validationCode.impl;
 
 import com.irving.aecproject.security_core.validationCode.*;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
@@ -12,6 +14,9 @@ import org.springframework.web.context.request.ServletWebRequest;
 import java.util.Map;
 
 public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> implements ValidateCodeProcessor {
+
+    private static final Logger logger = LoggerFactory.getLogger(AbstractValidateCodeProcessor.class);
+
     private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
 
     @Autowired
@@ -27,14 +32,15 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
     protected abstract void send(ServletWebRequest request, C validateCode) throws Exception;
 
     private void save(ServletWebRequest request, C validateCode) {
+        logger.info("saving validate code into session:{}", validateCode);
         sessionStrategy.setAttribute(request, getSessionKey(request), validateCode);
     }
 
     private C generate(ServletWebRequest request) {
         String type = getValidateCodeType(request).toString().toLowerCase();
-        System.out.println("type: " + type);
+        logger.info("type:{}", type);
         String generatorName = type + "CodeGenerator";  // ValidateCodeGenerator.class.getSimpleName()
-        System.out.println("generatorName: " + generatorName);
+        logger.info("generatorName:{}", generatorName);
         ValidateCodeGenerator validateCodeGenerator = validateCodeGenerators.get(generatorName);
         if (validateCodeGenerator == null) {
             throw new ValidateCodeException(String.format("验证码生成器%s不存在", generatorName));
@@ -60,12 +66,12 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
      */
     @Override
     public void validate(ServletWebRequest request) {
-
+        logger.info("inside of validate()");
         ValidateCodeType processorType = getValidateCodeType(request);
         String sessionKey = getSessionKey(request);
 
         C codeInSession = (C) sessionStrategy.getAttribute(request, sessionKey);
-        System.out.println("codeInSession: " + codeInSession);
+        logger.info("codeInSession:{}", codeInSession);
         String codeInRequest;
         try {
             codeInRequest = ServletRequestUtils.getStringParameter(request.getRequest(),
@@ -74,7 +80,7 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
             throw new ValidateCodeException("获取验证码的值失败");
         }
 
-        System.out.println("codeInRequest: " + codeInRequest);
+        logger.info("codeInRequest:{}", codeInRequest);
 
         if (StringUtils.isBlank(codeInRequest)) {
             throw new ValidateCodeException(processorType + "验证码的值不能为空");
