@@ -14,12 +14,20 @@ import org.springframework.social.security.SocialUserDetails;
 import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("userDetailsService")
 public class MemberInfoService implements UserDetailsService, SocialUserDetailsService {
     private static final Logger logger = LoggerFactory.getLogger(MemberInfoService.class);
 
     @Autowired
     private MemberInfoRepository memberInfoRepository;
+
+
+    public void saveNewMember(MemberInfo memberInfo) {
+        memberInfoRepository.save(memberInfo);
+
+    }
 
     /**
      * Locates the user based on the username. In the actual implementation, the search
@@ -54,9 +62,13 @@ public class MemberInfoService implements UserDetailsService, SocialUserDetailsS
     }
 
     private SocialUserDetails buildUser(String userId) {
-        String pwd = memberInfoRepository.findByConnactName(userId).getMemberpwd();
+        String pwd = memberInfoRepository.findByConnactName(userId).getMemberPassword();
         logger.info("数据库密码是:{}", pwd);
         return new SocialUser(userId, pwd, true, true, true, true, AuthorityUtils
                 .commaSeparatedStringToAuthorityList("admin"));
+    }
+
+    public List<MemberInfo> queryAllMembers() {
+        return memberInfoRepository.findAll();
     }
 }

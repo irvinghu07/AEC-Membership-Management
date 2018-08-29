@@ -3,6 +3,7 @@ package com.irving.aecproject.web.controller;
 import com.irving.aecproject.web.entity.ScoreRecord;
 import com.irving.aecproject.web.service.MemberInfoService;
 import com.irving.aecproject.web.service.ScoreRecordService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +15,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-    @Resource(name = "MemberInfoService")
+    @Autowired
     private MemberInfoService memberInfoService;
 
-    @Resource(name = "scoreRecordService")
+    @Autowired
     private ScoreRecordService scoreRecordService;
 
 //    @ResponseBody

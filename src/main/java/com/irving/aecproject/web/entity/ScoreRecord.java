@@ -1,11 +1,22 @@
 package com.irving.aecproject.web.entity;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
-public class ScoreRecord {
-    private Integer recordid;
+@Entity
+@Table(name = "SicScoreRecord")
+public class ScoreRecord implements Serializable {
 
-    private String memberid;
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long recordId;
+
+    @ManyToOne
+    @JoinColumn()
+    private Long memberId;
 
     private String operator;
 
@@ -15,20 +26,21 @@ public class ScoreRecord {
 
     private Date operatetime;
 
-    public Integer getRecordid() {
-        return recordid;
+
+    public Long getRecordId() {
+        return recordId;
     }
 
-    public void setRecordid(Integer recordid) {
-        this.recordid = recordid;
+    public void setRecordId(Long recordId) {
+        this.recordId = recordId;
     }
 
-    public String getMemberid() {
-        return memberid;
+    public Long getMemberId() {
+        return memberId;
     }
 
-    public void setMemberid(String memberid) {
-        this.memberid = memberid == null ? null : memberid.trim();
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
 
     public String getOperator() {

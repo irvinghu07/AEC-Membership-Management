@@ -54,7 +54,7 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
     }
 
     private SocialUserDetails buildUser(String userId) {
-//        String pwd = memberInfoService.queryMemberByUsername(userId).getMemberpwd();
+//        String pwd = memberInfoService.queryMemberByUsername(userId).getMemberPassword();
 //        logger.info("数据库密码是:{}", pwd);
 //        return new SocialUser(userId, pwd, true, true, true, true, AuthorityUtils
 //                .commaSeparatedStringToAuthorityList("admin"));

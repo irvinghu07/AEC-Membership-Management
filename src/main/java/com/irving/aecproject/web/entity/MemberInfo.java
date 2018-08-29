@@ -24,9 +24,9 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
 
     private String username;
 
-    private String memberpwd;
+    private String memberPassword;
 
-    private String connactName;
+    private String contactName;
 
     private String major;
 
@@ -40,6 +40,21 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
 
     @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
     private List<MemberRole> role;
+
+    @OneToMany(mappedBy = "", cascade = CascadeType.ALL)
+    private List<ScoreRecord> scores;
+
+    public MemberInfo(String username, String memberPassword, String contactName, String major, String estimateGraduateTime, String wechatid, Integer memberscore, Integer active, List<MemberRole> role) {
+        this.username = username;
+        this.memberPassword = memberPassword;
+        this.contactName = contactName;
+        this.major = major;
+        this.estimateGraduateTime = estimateGraduateTime;
+        this.wechatid = wechatid;
+        this.memberscore = memberscore;
+        this.active = active;
+        this.role = role;
+    }
 
     public static String getAdminStr() {
         return ADMIN_STR;
@@ -57,20 +72,20 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
         this.username = username;
     }
 
-    public String getMemberpwd() {
-        return memberpwd;
+    public String getMemberPassword() {
+        return memberPassword;
     }
 
-    public void setMemberpwd(String memberpwd) {
-        this.memberpwd = memberpwd;
+    public void setMemberPassword(String memberPassword) {
+        this.memberPassword = memberPassword;
     }
 
-    public String getConnactName() {
-        return connactName;
+    public String getContactName() {
+        return contactName;
     }
 
-    public void setConnactName(String connactName) {
-        this.connactName = connactName;
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
     }
 
     public String getMajor() {
@@ -144,7 +159,7 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
      */
     @Override
     public String getPassword() {
-        return this.getMemberpwd();
+        return this.getMemberPassword();
     }
 
     /**

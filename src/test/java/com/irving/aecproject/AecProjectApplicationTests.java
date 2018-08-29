@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -33,7 +34,7 @@ public class AecProjectApplicationTests {
         ArrayList<MemberInfo> allMembers = (ArrayList<MemberInfo>) memberInfoService.queryAllMembers();
         boolean isWorking = true;
         for (MemberInfo memberInfo : allMembers) {
-            String pwd = memberInfo.getMemberpwd();
+            String pwd = memberInfo.getMemberPassword();
             logger.info("===============================================");
             logger.info("validating member info for :{}", memberInfo);
             String encodedPwd = passwordEncoder.encode(pwd);
@@ -53,8 +54,18 @@ public class AecProjectApplicationTests {
     @Test
     public void changePwd() {
         ArrayList<MemberInfo> allMembers = (ArrayList<MemberInfo>) memberInfoService.queryAllMembers();
-        allMembers.forEach(memberInfo -> memberInfo.setMemberpwd(passwordEncoder.encode(memberInfo
-        .getMemberpwd())));
+        allMembers.forEach(memberInfo -> memberInfo.setMemberPassword(passwordEncoder.encode(memberInfo
+        .getMemberPassword())));
         allMembers.forEach(memberInfo -> memberInfoService.updateMemberInfo(memberInfo));
+    }
+
+    @Test
+    public void test1() {
+        HashMap<String, Integer> map = new HashMap<>();
+        ArrayList<String > list = new ArrayList<String>(){{
+            add("hello");
+            add(1, "world");
+        }};
+        list.forEach(str-> System.out.println(str));
     }
 }
