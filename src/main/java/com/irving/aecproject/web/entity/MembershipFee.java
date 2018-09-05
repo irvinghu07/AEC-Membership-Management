@@ -11,7 +11,7 @@ import java.util.Date;
 public class MembershipFee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Mfid;
+    private Long MembershipFeeID;
 
     @ManyToOne(optional = false)
     private MemberInfo memberInfo;
@@ -22,12 +22,12 @@ public class MembershipFee {
     //    时间 e.g: 2018-2019;
     private String descriptionForDuration;
 
-    public Long getMfid() {
-        return Mfid;
+    public Long getMembershipFeeID() {
+        return MembershipFeeID;
     }
 
-    public void setMfid(Long mfid) {
-        Mfid = mfid;
+    public void setMembershipFeeID(Long membershipFeeID) {
+        MembershipFeeID = membershipFeeID;
     }
 
     public MemberInfo getMemberInfo() {
@@ -58,7 +58,7 @@ public class MembershipFee {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("MembershipFee{");
-        sb.append("Mfid=").append(Mfid);
+        sb.append("MembershipFeeID=").append(MembershipFeeID);
         sb.append(", memberInfo=").append(memberInfo);
         sb.append(", createTime=").append(createTime);
         sb.append(", descriptionForDuration='").append(descriptionForDuration).append('\'');

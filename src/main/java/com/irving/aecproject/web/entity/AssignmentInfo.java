@@ -9,7 +9,7 @@ public class AssignmentInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //    任务id
-    private Long aid;
+    private Long AssignmentInfoID;
 
     //    是否达标
     private int isCompleted;
@@ -17,15 +17,15 @@ public class AssignmentInfo {
     //    任务描述
     private String description;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "assignmentInfos")
     private Set<MemberInfo> memberInfos;
 
-    public Long getAid() {
-        return aid;
+    public Long getAssignmentInfoID() {
+        return AssignmentInfoID;
     }
 
-    public void setAid(Long aid) {
-        this.aid = aid;
+    public void setAssignmentInfoID(Long assignmentInfoID) {
+        this.AssignmentInfoID = assignmentInfoID;
     }
 
     public int getIsCompleted() {
@@ -55,7 +55,7 @@ public class AssignmentInfo {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("AssignmentInfo{");
-        sb.append("aid=").append(aid);
+        sb.append("AssignmentInfoID=").append(AssignmentInfoID);
         sb.append(", isCompleted=").append(isCompleted);
         sb.append(", description='").append(description).append('\'');
         sb.append(", memberInfos=").append(memberInfos);

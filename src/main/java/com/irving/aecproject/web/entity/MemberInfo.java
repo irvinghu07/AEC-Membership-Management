@@ -20,7 +20,7 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long mid;
+    private Long memberId;
 
     //    实际名字
     private String contactFirstName;
@@ -54,24 +54,20 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
     @OneToMany(mappedBy = "memberInfo", cascade = CascadeType.ALL)
     private Set<ScoreRecord> scores;
 
-    @OneToMany(mappedBy = "memberInfo", cascade = CascadeType.ALL)
-    private Set<AssignmentInfo> workingList;
-
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(joinColumns = {@JoinColumn(name = "mid")}, inverseJoinColumns = {@JoinColumn(name = "acid")})
+    @JoinTable(name = "Member_Activity_Association", joinColumns = {@JoinColumn(name = "participatedActivities")}, inverseJoinColumns = {@JoinColumn(name = "participants")})
     private Set<ActivityInfo> participatedActivities;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(joinColumns = {@JoinColumn(name = "mid")}, inverseJoinColumns = {@JoinColumn(name = "aid")})
+    @JoinTable(name = "Member_Assignment_Association", joinColumns = {@JoinColumn(name = "assignmentInfos")}, inverseJoinColumns = {@JoinColumn(name = "memberInfos")})
     //    set of assignments given to this member
     private Set<AssignmentInfo> assignmentInfos;
-
 
     @OneToMany(mappedBy = "memberInfo", cascade = CascadeType.ALL)
     private Set<MembershipFee> membershipFees;
 
-    public void setMid(Long mid) {
-        this.mid = mid;
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
 
     public String getContactFirstName() {
@@ -134,18 +130,10 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
         this.scores = scores;
     }
 
-    public Set<AssignmentInfo> getWorkingList() {
-        return workingList;
-    }
-
-    public void setWorkingList(Set<AssignmentInfo> workingList) {
-        this.workingList = workingList;
-    }
-
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("MemberInfo{");
-        sb.append("mid=").append(mid);
+        sb.append("memberId=").append(memberId);
         sb.append(", contactFirstName='").append(contactFirstName).append('\'');
         sb.append(", contactLastName='").append(contactLastName).append('\'');
         sb.append(", departmentName=").append(departmentName);
@@ -158,18 +146,20 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
         sb.append(", idealOccupation='").append(idealOccupation).append('\'');
         sb.append(", role=").append(role);
         sb.append(", scores=").append(scores);
-        sb.append(", workingList=").append(workingList);
+        sb.append(", participatedActivities=").append(participatedActivities);
+        sb.append(", assignmentInfos=").append(assignmentInfos);
+        sb.append(", membershipFees=").append(membershipFees);
         sb.append('}');
         return sb.toString();
     }
 
 
-    public long getMid() {
-        return mid;
+    public long getMemberId() {
+        return memberId;
     }
 
     public void setMid(long mid) {
-        this.mid = mid;
+        this.memberId = mid;
     }
 
     public void setUsername(String username) {
@@ -209,7 +199,7 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         ArrayList<GrantedAuthority> auths = new ArrayList<>();
-//        if (StringUtils.startsWith(this.getMid(), ADMIN_STR)) {
+//        if (StringUtils.startsWith(this.getMemberId(), ADMIN_STR)) {
 //            auths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 //        } else {
 //            auths.add(new SimpleGrantedAuthority("ROLE_MEMBER"));

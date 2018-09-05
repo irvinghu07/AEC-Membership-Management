@@ -14,7 +14,7 @@ public class ScoreRecord implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long recordId;
+    private Long ScoreRecordID;
 
     @ManyToOne(optional = false)
     private MemberInfo memberInfo;
@@ -29,12 +29,12 @@ public class ScoreRecord implements Serializable {
     private Date operateTime;
 
 
-    public Long getRecordId() {
-        return recordId;
+    public Long getScoreRecordID() {
+        return ScoreRecordID;
     }
 
-    public void setRecordId(Long recordId) {
-        this.recordId = recordId;
+    public void setScoreRecordID(Long scoreRecordID) {
+        this.ScoreRecordID = scoreRecordID;
     }
 
     public MemberInfo getMemberInfo() {
@@ -81,7 +81,7 @@ public class ScoreRecord implements Serializable {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("ScoreRecord{");
-        sb.append("recordId=").append(recordId);
+        sb.append("ScoreRecordID=").append(ScoreRecordID);
         sb.append(", memberInfo=").append(memberInfo);
         sb.append(", operator='").append(operator).append('\'');
         sb.append(", amount=").append(amount);

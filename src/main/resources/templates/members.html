@@ -44,7 +44,7 @@
         <tbody>
         <th:block th:each="member, iterStat:${allmembers}">
             <tr th:class="${iterStat.odd}?'odd':'even'">
-                <td th:text="${member.memberid}" class="mid"></td>
+                <td th:text="${member.memberid}" class="memberId"></td>
                 <td th:text="${member.cnname}"></td>
                 <td th:text="${member.egname}"></td>
                 <td th:text="${member.wechatname}"></td>

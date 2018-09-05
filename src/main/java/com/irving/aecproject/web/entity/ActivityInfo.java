@@ -11,25 +11,25 @@ public class ActivityInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    Activity ID
-    private Long acid;
+    private Long ActivityInfoID;
 
     //    Activity Name
     private String activityName;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "participatedActivities")
     //    members who attended to this activity
-    private Set<MemberInfo> participant;
+    private Set<MemberInfo> participants;
 
     @OneToMany(mappedBy = "activityInfo", cascade = CascadeType.ALL)
 //    grade for this activity
     private Set<ActivityGrade> activityGrades;
 
-    public Long getAcid() {
-        return acid;
+    public Long getActivityInfoID() {
+        return ActivityInfoID;
     }
 
-    public void setAcid(Long acid) {
-        this.acid = acid;
+    public void setActivityInfoID(Long activityInfoID) {
+        this.ActivityInfoID = activityInfoID;
     }
 
     public String getActivityName() {
@@ -40,21 +40,21 @@ public class ActivityInfo {
         this.activityName = activityName;
     }
 
-    public Set<MemberInfo> getParticipant() {
-        return participant;
+    public Set<MemberInfo> getParticipants() {
+        return participants;
     }
 
     @JsonBackReference
-    public void setParticipant(Set<MemberInfo> participant) {
-        this.participant = participant;
+    public void setParticipants(Set<MemberInfo> participants) {
+        this.participants = participants;
     }
 
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("ActivityInfo{");
-        sb.append("acid=").append(acid);
+        sb.append("ActivityInfoID=").append(ActivityInfoID);
         sb.append(", activityName='").append(activityName).append('\'');
-        sb.append(", participant=").append(participant);
+        sb.append(", participants=").append(participants);
         sb.append('}');
         return sb.toString();
     }

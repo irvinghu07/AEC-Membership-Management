@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class MemberRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long rid;
+    private Long MemberRoleID;
 
     @Enumerated
     private Role role;
@@ -17,12 +17,12 @@ public class MemberRole {
     @ManyToOne(optional = false)
     private MemberInfo memberInfo;
 
-    public Long getRid() {
-        return rid;
+    public Long getMemberRoleID() {
+        return MemberRoleID;
     }
 
-    public void setRid(Long rid) {
-        this.rid = rid;
+    public void setMemberRoleID(Long memberRoleID) {
+        this.MemberRoleID = memberRoleID;
     }
 
     public Role getRole() {
@@ -45,7 +45,7 @@ public class MemberRole {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("MemberRole{");
-        sb.append("rid=").append(rid);
+        sb.append("MemberRoleID=").append(MemberRoleID);
         sb.append(", role=").append(role);
         sb.append(", memberInfo=").append(memberInfo);
         sb.append('}');

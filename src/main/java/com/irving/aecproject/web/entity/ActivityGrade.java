@@ -10,7 +10,7 @@ public class ActivityGrade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    activity grade ID
-    private Long agid;
+    private Long ActivityGradeID;
 
     @ManyToOne(optional = false)
     private ActivityInfo activityInfo;
@@ -19,12 +19,12 @@ public class ActivityGrade {
 
     private Integer grade;
 
-    public Long getAgid() {
-        return agid;
+    public Long getActivityGradeID() {
+        return ActivityGradeID;
     }
 
-    public void setAgid(Long agid) {
-        this.agid = agid;
+    public void setActivityGradeID(Long activityGradeID) {
+        this.ActivityGradeID = activityGradeID;
     }
 
     public ActivityInfo getActivityInfo() {
@@ -55,7 +55,7 @@ public class ActivityGrade {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("ActivityGrade{");
-        sb.append("agid=").append(agid);
+        sb.append("ActivityGradeID=").append(ActivityGradeID);
         sb.append(", activityInfo=").append(activityInfo);
         sb.append(", comment='").append(comment).append('\'');
         sb.append(", grade=").append(grade);
