@@ -7,6 +7,15 @@ import javax.persistence.*;
 @Entity
 @Table(name = "SicMemberRole")
 public class MemberRole {
+
+    public MemberRole() {
+    }
+
+    public MemberRole(Role role, MemberInfo memberInfo) {
+        this.role = role;
+        this.memberInfo = memberInfo;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long MemberRoleID;
@@ -14,7 +23,7 @@ public class MemberRole {
     @Enumerated
     private Role role;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private MemberInfo memberInfo;
 
     public Long getMemberRoleID() {
@@ -47,7 +56,6 @@ public class MemberRole {
         final StringBuffer sb = new StringBuffer("MemberRole{");
         sb.append("MemberRoleID=").append(MemberRoleID);
         sb.append(", role=").append(role);
-        sb.append(", memberInfo=").append(memberInfo);
         sb.append('}');
         return sb.toString();
     }

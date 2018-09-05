@@ -17,7 +17,7 @@ public class AssignmentInfo {
     //    任务描述
     private String description;
 
-    @ManyToMany(mappedBy = "assignmentInfos")
+    @ManyToMany(mappedBy = "assignmentInfos", fetch = FetchType.LAZY)
     private Set<MemberInfo> memberInfos;
 
     public Long getAssignmentInfoID() {

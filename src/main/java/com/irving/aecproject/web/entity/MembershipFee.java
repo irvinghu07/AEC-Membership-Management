@@ -13,7 +13,7 @@ public class MembershipFee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long MembershipFeeID;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private MemberInfo memberInfo;
 
     @Temporal(TemporalType.DATE)

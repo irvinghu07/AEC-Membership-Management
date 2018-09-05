@@ -16,11 +16,11 @@ public class ActivityInfo {
     //    Activity Name
     private String activityName;
 
-    @ManyToMany(mappedBy = "participatedActivities")
+    @ManyToMany(mappedBy = "participatedActivities", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //    members who attended to this activity
     private Set<MemberInfo> participants;
 
-    @OneToMany(mappedBy = "activityInfo", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "activityInfo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    grade for this activity
     private Set<ActivityGrade> activityGrades;
 

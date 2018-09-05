@@ -16,7 +16,7 @@ public class ScoreRecord implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ScoreRecordID;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private MemberInfo memberInfo;
 
     private String operator;

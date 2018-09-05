@@ -11,15 +11,11 @@ spring:
     password:
     url: jdbc:mysql://localhost:3306/aecinfo?useUnicode=true&characterEncoding=UTF-8
     driver-class-name: com.mysql.jdbc.Driver
-    type: com.alibaba.druid.pool.DruidDataSource
-    dbcp2:
-      test-on-borrow: false
-      initial-size: 1
-      min-idle: 1
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+    database-platform: com.irving.aecproject.web.config.MysqlLocalDialect
 pagehelper:
   helper-dialect: mysql
   reasonable: true

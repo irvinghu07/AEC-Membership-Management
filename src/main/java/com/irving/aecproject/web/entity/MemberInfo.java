@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,6 +18,28 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
     private static final long serialVersionUID = 1L;
 
 //    private static final String ADMIN_STR = "admin";
+
+
+    public MemberInfo() {
+    }
+
+    public MemberInfo(String contactFirstName, String contactLastName, DepartmentName departmentName, String username, String memberPassword, String major, String estimateGraduateTime, Long estimateInvestmentAmount, String idealOccupation) {
+        this.contactFirstName = contactFirstName;
+        this.contactLastName = contactLastName;
+        this.departmentName = departmentName;
+        this.username = username;
+        this.memberPassword = memberPassword;
+        this.memberScore = 12;
+        this.major = major;
+        this.estimateGraduateTime = estimateGraduateTime;
+        this.estimateInvestmentAmount = estimateInvestmentAmount;
+        this.idealOccupation = idealOccupation;
+        this.role = new HashSet<>();
+        this.scores = new HashSet<>();
+        this.participatedActivities = new HashSet<>();
+        this.assignmentInfos = new HashSet<>();
+        this.membershipFees = new HashSet<>();
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,27 +71,23 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
 
     private String idealOccupation;
 
-    @OneToMany(mappedBy = "memberInfo", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "memberInfo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<MemberRole> role;
 
-    @OneToMany(mappedBy = "memberInfo", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "memberInfo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<ScoreRecord> scores;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "Member_Activity_Association", joinColumns = {@JoinColumn(name = "participatedActivities")}, inverseJoinColumns = {@JoinColumn(name = "participants")})
     private Set<ActivityInfo> participatedActivities;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "Member_Assignment_Association", joinColumns = {@JoinColumn(name = "assignmentInfos")}, inverseJoinColumns = {@JoinColumn(name = "memberInfos")})
     //    set of assignments given to this member
     private Set<AssignmentInfo> assignmentInfos;
 
-    @OneToMany(mappedBy = "memberInfo", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "memberInfo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<MembershipFee> membershipFees;
-
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
-    }
 
     public String getContactFirstName() {
         return contactFirstName;
@@ -130,36 +149,41 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
         this.scores = scores;
     }
 
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("MemberInfo{");
-        sb.append("memberId=").append(memberId);
-        sb.append(", contactFirstName='").append(contactFirstName).append('\'');
-        sb.append(", contactLastName='").append(contactLastName).append('\'');
-        sb.append(", departmentName=").append(departmentName);
-        sb.append(", username='").append(username).append('\'');
-        sb.append(", memberPassword='").append(memberPassword).append('\'');
-        sb.append(", major='").append(major).append('\'');
-        sb.append(", estimateGraduateTime='").append(estimateGraduateTime).append('\'');
-        sb.append(", memberScore=").append(memberScore);
-        sb.append(", estimateInvestmentAmount=").append(estimateInvestmentAmount);
-        sb.append(", idealOccupation='").append(idealOccupation).append('\'');
-        sb.append(", role=").append(role);
-        sb.append(", scores=").append(scores);
-        sb.append(", participatedActivities=").append(participatedActivities);
-        sb.append(", assignmentInfos=").append(assignmentInfos);
-        sb.append(", membershipFees=").append(membershipFees);
-        sb.append('}');
-        return sb.toString();
-    }
 
-
-    public long getMemberId() {
+    public Long getMemberId() {
         return memberId;
     }
 
-    public void setMid(long mid) {
-        this.memberId = mid;
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
+
+    public Set<MemberRole> getRole() {
+        return role;
+    }
+
+    public Set<ActivityInfo> getParticipatedActivities() {
+        return participatedActivities;
+    }
+
+    public void setParticipatedActivities(Set<ActivityInfo> participatedActivities) {
+        this.participatedActivities = participatedActivities;
+    }
+
+    public Set<AssignmentInfo> getAssignmentInfos() {
+        return assignmentInfos;
+    }
+
+    public void setAssignmentInfos(Set<AssignmentInfo> assignmentInfos) {
+        this.assignmentInfos = assignmentInfos;
+    }
+
+    public Set<MembershipFee> getMembershipFees() {
+        return membershipFees;
+    }
+
+    public void setMembershipFees(Set<MembershipFee> membershipFees) {
+        this.membershipFees = membershipFees;
     }
 
     public void setUsername(String username) {
@@ -190,6 +214,29 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
         this.estimateGraduateTime = estimateGraduateTime;
     }
 
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("MemberInfo{");
+        sb.append("memberId=").append(memberId);
+        sb.append(", contactFirstName='").append(contactFirstName).append('\'');
+        sb.append(", contactLastName='").append(contactLastName).append('\'');
+        sb.append(", departmentName=").append(departmentName);
+        sb.append(", username='").append(username).append('\'');
+        sb.append(", memberPassword='").append(memberPassword).append('\'');
+        sb.append(", major='").append(major).append('\'');
+        sb.append(", estimateGraduateTime='").append(estimateGraduateTime).append('\'');
+        sb.append(", memberScore=").append(memberScore);
+        sb.append(", estimateInvestmentAmount=").append(estimateInvestmentAmount);
+        sb.append(", idealOccupation='").append(idealOccupation).append('\'');
+        sb.append(", role=").append(role);
+        sb.append(", scores=").append(scores);
+        sb.append(", participatedActivities=").append(participatedActivities);
+        sb.append(", assignmentInfos=").append(assignmentInfos);
+        sb.append(", membershipFees=").append(membershipFees);
+        sb.append('}');
+        return sb.toString();
+    }
 
     /**
      * Returns the authorities granted to the user. Cannot return <code>null</code>.
