@@ -43,6 +43,14 @@ public class AecProjectApplicationTests {
     }
 
     @Test
+    public void testSaveWithChinese() {
+        MemberInfo memberInfo = new MemberInfo("芮铨", "胡",
+                DepartmentName.NEW_MEDIUM, "irving", "123456", "CS",
+                "2020", Long.valueOf("1000"), "TBD");
+        memberInfoService.saveNewMember(memberInfo);
+    }
+
+    @Test
     public void testQueryAll() {
         logger.info("result:{}", memberInfoService.queryAllMembers());
     }

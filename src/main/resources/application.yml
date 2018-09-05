@@ -9,18 +9,13 @@ spring:
   datasource:
     username: root
     password:
-    url: jdbc:mysql://localhost:3306/aecinfo?useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/sicInfo?useUnicode=true&characterEncoding=UTF-8
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     database-platform: com.irving.aecproject.web.config.MysqlLocalDialect
-pagehelper:
-  helper-dialect: mysql
-  reasonable: true
-  support-methods-arguments: true
-  params: count=countSql
 com:
   irving:
     security:
