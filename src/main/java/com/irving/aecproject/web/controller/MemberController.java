@@ -9,7 +9,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
@@ -50,6 +49,7 @@ public class MemberController {
     @RequestMapping("/records")
     @ResponseBody
     List<ScoreRecord> queryAllScores(){
-        return scoreRecordService.queryAllRecords();
+//        return scoreRecordService.queryAllRecords();
+        return null;
     }
 }

@@ -56,7 +56,7 @@ public class AecProjectApplicationTests {
         ArrayList<MemberInfo> allMembers = (ArrayList<MemberInfo>) memberInfoService.queryAllMembers();
         allMembers.forEach(memberInfo -> memberInfo.setMemberPassword(passwordEncoder.encode(memberInfo
         .getMemberPassword())));
-        allMembers.forEach(memberInfo -> memberInfoService.updateMemberInfo(memberInfo));
+//        allMembers.forEach(memberInfo -> memberInfoService.updateMemberInfo(memberInfo));
     }
 
     @Test

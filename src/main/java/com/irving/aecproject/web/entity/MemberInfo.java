@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "SicMemberInfo")
@@ -16,49 +16,140 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
 
     private static final long serialVersionUID = 1L;
 
-    private static final String ADMIN_STR = "admin";
+//    private static final String ADMIN_STR = "admin";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long mid;
+    private Long mid;
+
+    //    实际名字
+    private String contactFirstName;
+
+    private String contactLastName;
+
+    //    普通会员:member
+//    执行团队成员: financial / new medium / internal control /  commercial management
+
+    @Enumerated(EnumType.STRING)
+    private DepartmentName departmentName;
 
     private String username;
 
     private String memberPassword;
 
-    private String contactName;
-
     private String major;
 
     private String estimateGraduateTime;
 
-    private String wechatid;
+    private Integer memberScore;
 
-    private Integer memberscore;
+    //    预计投资金额
+    private Long estimateInvestmentAmount;
 
-    private Integer active;
+    private String idealOccupation;
 
-    @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
-    private List<MemberRole> role;
+    @OneToMany(mappedBy = "memberInfo", cascade = CascadeType.ALL)
+    private Set<MemberRole> role;
 
-    @OneToMany(mappedBy = "", cascade = CascadeType.ALL)
-    private List<ScoreRecord> scores;
+    @OneToMany(mappedBy = "memberInfo", cascade = CascadeType.ALL)
+    private Set<ScoreRecord> scores;
 
-    public MemberInfo(String username, String memberPassword, String contactName, String major, String estimateGraduateTime, String wechatid, Integer memberscore, Integer active, List<MemberRole> role) {
-        this.username = username;
-        this.memberPassword = memberPassword;
-        this.contactName = contactName;
-        this.major = major;
-        this.estimateGraduateTime = estimateGraduateTime;
-        this.wechatid = wechatid;
-        this.memberscore = memberscore;
-        this.active = active;
+    @OneToMany(mappedBy = "memberInfo", cascade = CascadeType.ALL)
+    private Set<AssignmentInfo> workingList;
+
+    public void setMid(Long mid) {
+        this.mid = mid;
+    }
+
+    public String getContactFirstName() {
+        return contactFirstName;
+    }
+
+    public void setContactFirstName(String contactFirstName) {
+        this.contactFirstName = contactFirstName;
+    }
+
+    public String getContactLastName() {
+        return contactLastName;
+    }
+
+    public void setContactLastName(String contactLastName) {
+        this.contactLastName = contactLastName;
+    }
+
+    public DepartmentName getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(DepartmentName departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public Integer getMemberScore() {
+        return memberScore;
+    }
+
+    public void setMemberScore(Integer memberScore) {
+        this.memberScore = memberScore;
+    }
+
+    public Long getEstimateInvestmentAmount() {
+        return estimateInvestmentAmount;
+    }
+
+    public void setEstimateInvestmentAmount(Long estimateInvestmentAmount) {
+        this.estimateInvestmentAmount = estimateInvestmentAmount;
+    }
+
+    public String getIdealOccupation() {
+        return idealOccupation;
+    }
+
+    public void setIdealOccupation(String idealOccupation) {
+        this.idealOccupation = idealOccupation;
+    }
+
+    public void setRole(Set<MemberRole> role) {
         this.role = role;
     }
 
-    public static String getAdminStr() {
-        return ADMIN_STR;
+    public Set<ScoreRecord> getScores() {
+        return scores;
     }
+
+    public void setScores(Set<ScoreRecord> scores) {
+        this.scores = scores;
+    }
+
+    public Set<AssignmentInfo> getWorkingList() {
+        return workingList;
+    }
+
+    public void setWorkingList(Set<AssignmentInfo> workingList) {
+        this.workingList = workingList;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("MemberInfo{");
+        sb.append("mid=").append(mid);
+        sb.append(", contactFirstName='").append(contactFirstName).append('\'');
+        sb.append(", contactLastName='").append(contactLastName).append('\'');
+        sb.append(", departmentName=").append(departmentName);
+        sb.append(", username='").append(username).append('\'');
+        sb.append(", memberPassword='").append(memberPassword).append('\'');
+        sb.append(", major='").append(major).append('\'');
+        sb.append(", estimateGraduateTime='").append(estimateGraduateTime).append('\'');
+        sb.append(", memberScore=").append(memberScore);
+        sb.append(", estimateInvestmentAmount=").append(estimateInvestmentAmount);
+        sb.append(", idealOccupation='").append(idealOccupation).append('\'');
+        sb.append(", role=").append(role);
+        sb.append(", scores=").append(scores);
+        sb.append(", workingList=").append(workingList);
+        sb.append('}');
+        return sb.toString();
+    }
+
 
     public long getMid() {
         return mid;
@@ -80,14 +171,6 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
         this.memberPassword = memberPassword;
     }
 
-    public String getContactName() {
-        return contactName;
-    }
-
-    public void setContactName(String contactName) {
-        this.contactName = contactName;
-    }
-
     public String getMajor() {
         return major;
     }
@@ -104,37 +187,6 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
         this.estimateGraduateTime = estimateGraduateTime;
     }
 
-    public String getWechatid() {
-        return wechatid;
-    }
-
-    public void setWechatid(String wechatid) {
-        this.wechatid = wechatid;
-    }
-
-    public Integer getMemberscore() {
-        return memberscore;
-    }
-
-    public void setMemberscore(Integer memberscore) {
-        this.memberscore = memberscore;
-    }
-
-    public Integer getActive() {
-        return active;
-    }
-
-    public void setActive(Integer active) {
-        this.active = active;
-    }
-
-    public List<MemberRole> getRole() {
-        return role;
-    }
-
-    public void setRole(List<MemberRole> role) {
-        this.role = role;
-    }
 
     /**
      * Returns the authorities granted to the user. Cannot return <code>null</code>.

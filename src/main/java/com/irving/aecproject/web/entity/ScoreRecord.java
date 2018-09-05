@@ -1,5 +1,7 @@
 package com.irving.aecproject.web.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -14,9 +16,8 @@ public class ScoreRecord implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long recordId;
 
-    @ManyToOne
-    @JoinColumn()
-    private Long memberId;
+    @ManyToOne(optional = false)
+    private MemberInfo memberInfo;
 
     private String operator;
 
@@ -24,7 +25,8 @@ public class ScoreRecord implements Serializable {
 
     private String content;
 
-    private Date operatetime;
+    @Temporal(TemporalType.DATE)
+    private Date operateTime;
 
 
     public Long getRecordId() {
@@ -35,12 +37,13 @@ public class ScoreRecord implements Serializable {
         this.recordId = recordId;
     }
 
-    public Long getMemberId() {
-        return memberId;
+    public MemberInfo getMemberInfo() {
+        return memberInfo;
     }
 
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
+    @JsonBackReference
+    public void setMemberInfo(MemberInfo memberInfo) {
+        this.memberInfo = memberInfo;
     }
 
     public String getOperator() {
@@ -67,11 +70,25 @@ public class ScoreRecord implements Serializable {
         this.content = content == null ? null : content.trim();
     }
 
-    public Date getOperatetime() {
-        return operatetime;
+    public Date getOperateTime() {
+        return operateTime;
     }
 
-    public void setOperatetime(Date operatetime) {
-        this.operatetime = operatetime;
+    public void setOperateTime(Date operateTime) {
+        this.operateTime = operateTime;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("ScoreRecord{");
+        sb.append("recordId=").append(recordId);
+        sb.append(", memberInfo=").append(memberInfo);
+        sb.append(", operator='").append(operator).append('\'');
+        sb.append(", amount=").append(amount);
+        sb.append(", content='").append(content).append('\'');
+        sb.append(", operateTime=").append(operateTime);
+        sb.append('}');
+        return sb.toString();
+    }
+
 }

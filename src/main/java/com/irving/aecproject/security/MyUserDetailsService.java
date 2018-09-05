@@ -11,7 +11,7 @@ import org.springframework.social.security.SocialUserDetails;
 import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.stereotype.Service;
 
-@Service("userDetailsService")
+@Service
 public class MyUserDetailsService implements UserDetailsService, SocialUserDetailsService {
     private static final Logger logger = LoggerFactory.getLogger(MyUserDetailsService.class);
 
