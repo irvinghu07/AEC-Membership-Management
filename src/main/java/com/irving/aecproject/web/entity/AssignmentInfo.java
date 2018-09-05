@@ -1,8 +1,7 @@
 package com.irving.aecproject.web.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "SicAssignmentInfo")
@@ -18,8 +17,8 @@ public class AssignmentInfo {
     //    任务描述
     private String description;
 
-    @ManyToOne
-    private MemberInfo memberInfo;
+    @ManyToMany
+    private Set<MemberInfo> memberInfos;
 
     public Long getAid() {
         return aid;
@@ -45,13 +44,12 @@ public class AssignmentInfo {
         this.description = description;
     }
 
-    public MemberInfo getMemberInfo() {
-        return memberInfo;
+    public Set<MemberInfo> getMemberInfos() {
+        return memberInfos;
     }
 
-    @JsonBackReference
-    public void setMemberInfo(MemberInfo memberInfo) {
-        this.memberInfo = memberInfo;
+    public void setMemberInfos(Set<MemberInfo> memberInfos) {
+        this.memberInfos = memberInfos;
     }
 
     @Override
@@ -60,7 +58,7 @@ public class AssignmentInfo {
         sb.append("aid=").append(aid);
         sb.append(", isCompleted=").append(isCompleted);
         sb.append(", description='").append(description).append('\'');
-        sb.append(", memberInfo=").append(memberInfo);
+        sb.append(", memberInfos=").append(memberInfos);
         sb.append('}');
         return sb.toString();
     }

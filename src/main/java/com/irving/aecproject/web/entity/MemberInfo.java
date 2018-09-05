@@ -57,6 +57,19 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
     @OneToMany(mappedBy = "memberInfo", cascade = CascadeType.ALL)
     private Set<AssignmentInfo> workingList;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(joinColumns = {@JoinColumn(name = "mid")}, inverseJoinColumns = {@JoinColumn(name = "acid")})
+    private Set<ActivityInfo> participatedActivities;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(joinColumns = {@JoinColumn(name = "mid")}, inverseJoinColumns = {@JoinColumn(name = "aid")})
+    //    set of assignments given to this member
+    private Set<AssignmentInfo> assignmentInfos;
+
+
+    @OneToMany(mappedBy = "memberInfo", cascade = CascadeType.ALL)
+    private Set<MembershipFee> membershipFees;
+
     public void setMid(Long mid) {
         this.mid = mid;
     }

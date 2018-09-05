@@ -11,7 +11,8 @@ public class MemberRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long rid;
 
-    private String roleName;
+    @Enumerated
+    private Role role;
 
     @ManyToOne(optional = false)
     private MemberInfo memberInfo;
@@ -24,22 +25,12 @@ public class MemberRole {
         this.rid = rid;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("MemberRole{");
-        sb.append("rid=").append(rid);
-        sb.append(", roleName='").append(roleName).append('\'');
-        sb.append(", memberInfo=").append(memberInfo);
-        sb.append('}');
-        return sb.toString();
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public MemberInfo getMemberInfo() {
@@ -51,4 +42,13 @@ public class MemberRole {
         this.memberInfo = memberInfo;
     }
 
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("MemberRole{");
+        sb.append("rid=").append(rid);
+        sb.append(", role=").append(role);
+        sb.append(", memberInfo=").append(memberInfo);
+        sb.append('}');
+        return sb.toString();
+    }
 }
