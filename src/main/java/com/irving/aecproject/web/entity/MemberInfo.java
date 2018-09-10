@@ -29,7 +29,6 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
         this.departmentName = departmentName;
         this.username = username;
         this.memberPassword = memberPassword;
-        this.memberScore = 12;
         this.major = major;
         this.estimateGraduateTime = estimateGraduateTime;
         this.estimateInvestmentAmount = estimateInvestmentAmount;
@@ -64,12 +63,16 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
 
     private String estimateGraduateTime;
 
-    private Integer memberScore;
+    //    @Column(columnDefinition = "default 0")
+    private Integer memberScore = 0;
 
     //    预计投资金额
     private Long estimateInvestmentAmount;
 
     private String idealOccupation;
+
+    //    @Column(columnDefinition = "INT default 0")
+    private Integer isRetired = 0;
 
     @OneToMany(mappedBy = "memberInfo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<MemberRole> role;
@@ -214,6 +217,13 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
         this.estimateGraduateTime = estimateGraduateTime;
     }
 
+    public Integer getIsRetired() {
+        return isRetired;
+    }
+
+    public void setIsRetired(Integer isRetired) {
+        this.isRetired = isRetired;
+    }
 
     @Override
     public String toString() {
@@ -229,6 +239,7 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
         sb.append(", memberScore=").append(memberScore);
         sb.append(", estimateInvestmentAmount=").append(estimateInvestmentAmount);
         sb.append(", idealOccupation='").append(idealOccupation).append('\'');
+        sb.append(", isRetired=").append(isRetired);
         sb.append(", role=").append(role);
         sb.append(", scores=").append(scores);
         sb.append(", participatedActivities=").append(participatedActivities);

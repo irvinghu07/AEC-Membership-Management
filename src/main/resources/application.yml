@@ -14,8 +14,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+      naming:
+        physical-strategy:  org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#      create-drop
     show-sql: true
-    database-platform: com.irving.aecproject.web.config.MysqlLocalDialect
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 com:
   irving:
     security:

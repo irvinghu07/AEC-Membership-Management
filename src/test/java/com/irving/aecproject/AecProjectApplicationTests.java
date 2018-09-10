@@ -5,8 +5,8 @@ import com.irving.aecproject.web.entity.MemberInfo;
 import com.irving.aecproject.web.entity.MemberRole;
 import com.irving.aecproject.web.entity.Role;
 import com.irving.aecproject.web.repository.MemberInfoRepository;
+import com.irving.aecproject.web.repository.MemberRoleRepository;
 import com.irving.aecproject.web.service.MemberInfoService;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -29,15 +29,18 @@ public class AecProjectApplicationTests {
     @Autowired
     private MemberInfoRepository memberInfoRepository;
 
-    @Ignore
+    @Autowired
+    private MemberRoleRepository memberRoleRepository;
+
+    //    @Ignore
     @Test
     public void testSave() {
 //        Set<MemberRole> memberRoles = new HashSet<MemberRole>() {{
 //            add(MemberRole);
 //        }};
-        MemberInfo memberInfo = new MemberInfo("Ethan", "Irving",
-                DepartmentName.NEW_MEDIUM, "irving", "123456", "CS",
-                "2020", Long.valueOf("1000"), "TBD");
+        MemberInfo memberInfo = new MemberInfo("Bob", "Bob1",
+                DepartmentName.COMMERCIAL_MANAGEMENT, "Bob", "123456", "IB",
+                "2019", Long.valueOf("2000"), "Manager");
         memberInfoService.saveNewMember(memberInfo);
 //        logger.info("result:{}", );
     }
@@ -65,10 +68,12 @@ public class AecProjectApplicationTests {
     public void addRole() {
         String username = "irving";
         MemberInfo memberInfo = memberInfoRepository.findByUsername(username);
-        MemberRole memberRole = new MemberRole(Role.EXECUTIVE, memberInfo);
+//        MemberRole memberRole = new MemberRole(Role.EXECUTIVE, memberInfo);
+        MemberRole memberRole2 = new MemberRole(Role.MANAGER, memberInfo);
         Set<MemberRole> roles = memberInfo.getRole();
-        roles.add(memberRole);
+        roles.add(memberRole2);
         memberInfo.setRole(roles);
-        memberInfoRepository.saveAndFlush(memberInfo);
+        memberRoleRepository.saveAll(roles);
+//        memberInfoRepository.saveAndFlush(memberInfo);
     }
 }
