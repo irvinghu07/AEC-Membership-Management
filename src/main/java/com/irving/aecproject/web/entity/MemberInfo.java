@@ -23,11 +23,11 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
     public MemberInfo() {
     }
 
-    public MemberInfo(String contactFirstName, String contactLastName, DepartmentName departmentName, String username, String memberPassword, String major, String estimateGraduateTime, Long estimateInvestmentAmount, String idealOccupation) {
+    public MemberInfo(String contactFirstName, String contactLastName, DepartmentName departmentName, String sUserName, String memberPassword, String major, String estimateGraduateTime, Long estimateInvestmentAmount, String idealOccupation) {
         this.contactFirstName = contactFirstName;
         this.contactLastName = contactLastName;
         this.departmentName = departmentName;
-        this.username = username;
+        this.sUserName = sUserName;
         this.memberPassword = memberPassword;
         this.major = major;
         this.estimateGraduateTime = estimateGraduateTime;
@@ -55,7 +55,7 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
     @Enumerated(EnumType.STRING)
     private DepartmentName departmentName;
 
-    private String username;
+    private String sUserName;
 
     private String memberPassword;
 
@@ -189,8 +189,12 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
         this.membershipFees = membershipFees;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setsUserName(String sUserName) {
+        this.sUserName = sUserName;
+    }
+
+    public String getsUserName() {
+        return sUserName;
     }
 
     public String getMemberPassword() {
@@ -225,6 +229,7 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
         this.isRetired = isRetired;
     }
 
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("MemberInfo{");
@@ -232,7 +237,7 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
         sb.append(", contactFirstName='").append(contactFirstName).append('\'');
         sb.append(", contactLastName='").append(contactLastName).append('\'');
         sb.append(", departmentName=").append(departmentName);
-        sb.append(", username='").append(username).append('\'');
+        sb.append(", sUserName='").append(sUserName).append('\'');
         sb.append(", memberPassword='").append(memberPassword).append('\'');
         sb.append(", major='").append(major).append('\'');
         sb.append(", estimateGraduateTime='").append(estimateGraduateTime).append('\'');
@@ -275,6 +280,7 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
         return this.getMemberPassword();
     }
 
+
     /**
      * Returns the username used to authenticate the user. Cannot return <code>null</code>.
      *
@@ -282,7 +288,7 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
      */
     @Override
     public String getUsername() {
-        return this.getUsername();
+        return this.getsUserName();
     }
 
     /**
@@ -333,7 +339,7 @@ public class MemberInfo implements UserDetails, Serializable, SocialUserDetails 
 
     /**
      * The user's identity at the provider.
-     * Might be same as {@link #getUsername()} if users are identified by username
+     * Might be same as {@link #getUsername()} if users are identified by sUserName
      *
      * @return user's id used to assign connections
      */

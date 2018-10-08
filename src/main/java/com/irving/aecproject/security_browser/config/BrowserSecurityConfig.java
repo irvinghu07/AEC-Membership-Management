@@ -77,12 +77,12 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                         securityProperties.getBrowserProperties().getSignUpUrl(),
                         SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*",
                         "/user/enroll", "/static/images/**",
-                        "/static/css/**", "/static/error/**")
+                        "/static/css/**", "/static/error/**", "/member/showMembers")
                 .permitAll()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/member/showMembers")
-                .hasRole("ADMIN")
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/member/showMembers")
+//                .hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()

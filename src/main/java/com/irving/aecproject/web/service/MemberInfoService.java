@@ -53,7 +53,8 @@ public class MemberInfoService implements UserDetailsService, SocialUserDetailsS
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //        根据用户名使用数据持久层查找用户信息
-        MemberInfo memberInfo = memberInfoRepository.findByUsername(username);
+//        MemberInfo memberInfo = memberInfoRepository.findByUsername(username);
+        MemberInfo memberInfo = memberInfoRepository.findBySUserNameEquals(username);
         logger.info("表单登录用户名: {}", username);
         return memberInfo;
     }
@@ -71,7 +72,8 @@ public class MemberInfoService implements UserDetailsService, SocialUserDetailsS
     }
 
     private SocialUserDetails buildUser(String userId) {
-        String pwd = memberInfoRepository.findByUsername(userId).getPassword();
+//        String pwd = memberInfoRepository.findByUsername(userId).getPassword();
+        String pwd = memberInfoRepository.findBySUserNameEquals(userId).getPassword();
         logger.info("数据库密码是:{}", pwd);
         return new SocialUser(userId, pwd, true, true, true, true, AuthorityUtils
                 .commaSeparatedStringToAuthorityList("admin"));

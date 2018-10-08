@@ -67,7 +67,8 @@ public class AecProjectApplicationTests {
     @Test
     public void addRole() {
         String username = "irving";
-        MemberInfo memberInfo = memberInfoRepository.findByUsername(username);
+//        MemberInfo memberInfo = memberInfoRepository.findByUsername(username);
+        MemberInfo memberInfo = memberInfoRepository.findBySUserNameEquals(username);
 //        MemberRole memberRole = new MemberRole(Role.EXECUTIVE, memberInfo);
         MemberRole memberRole2 = new MemberRole(Role.MANAGER, memberInfo);
         Set<MemberRole> roles = memberInfo.getRole();

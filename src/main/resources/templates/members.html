@@ -31,10 +31,14 @@
         <thead>
         <tr>
             <td>会员ID</td>
-            <td>中文名</td>
-            <td>英文名</td>
-            <td>微信名</td>
-            <td>微信ID</td>
+            <td>姓</td>
+            <td>名</td>
+            <td>所属</td>
+            <td>用户名</td>
+            <!--major-->
+            <!--estimateGraduateTime-->
+            <!--estimateInvestmentAmount-->
+            <!--idealOccupation-->
             <td>积分</td>
             <td>修改积分</td>
             <td>查看积分</td>
@@ -44,12 +48,12 @@
         <tbody>
         <th:block th:each="member, iterStat:${allmembers}">
             <tr th:class="${iterStat.odd}?'odd':'even'">
-                <td th:text="${member.memberid}" class="memberId"></td>
-                <td th:text="${member.cnname}"></td>
-                <td th:text="${member.egname}"></td>
-                <td th:text="${member.wechatname}"></td>
-                <td th:text="${member.wechatid}"></td>
-                <td th:text="${member.memberscore}" class="score"></td>
+                <td th:text="${member.memberId}" class="memberId"></td>
+                <td th:text="${member.contactFirstName}"></td>
+                <td th:text="${member.contactLastName}"></td>
+                <td th:text="${member.departmentName}"></td>
+                <td th:text="${member.sUserName}"></td>
+                <td th:text="${member.memberScore}" class="score"></td>
                 <td><a th:href="@{modify/${member.memberid}}">修改</a></td>
                 <td><a th:href="@{check/${member.memberid}}">查看</a></td>
                 <td><a th:href="@{delete/${member.memberid}}">删除</a></td>
